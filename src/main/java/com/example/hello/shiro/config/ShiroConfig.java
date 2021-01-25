@@ -16,8 +16,8 @@ public class ShiroConfig {
 
     // 将自己的验证方式加入容器
     @Bean
-    public MyShiroRealm myShiroRealm() {
-        MyShiroRealm myShiroRealm = new MyShiroRealm();
+    public MyAuthorizingRealm myShiroRealm() {
+        MyAuthorizingRealm myShiroRealm = new MyAuthorizingRealm();
         return myShiroRealm;
     }
 
@@ -42,6 +42,8 @@ public class ShiroConfig {
         filterMap.put("/swagger**/**", "anon");
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/v2/**", "anon");
+        //
+        filterMap.put("/user/**", "anon");
         // 对所有用户认证
         filterMap.put("/**", "authc");
         // 登录

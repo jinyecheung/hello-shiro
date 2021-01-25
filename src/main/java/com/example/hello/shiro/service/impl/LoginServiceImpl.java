@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
     //添加角色
     @Override
     public Role addRole(Role role) {
-        User user = userDao.findByName(role.getUser().getName());
+        User user = userDao.findByName(role.getUser().getUserName());
         role.setUser(user);
         Permission permission1 = new Permission();
         permission1.setPermission("create");

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * http://localhost:8080/index
  */
 @Controller
-public class DemoIndex {
+public class IndexController {
 
     @RequestMapping("/index")
     public String index(Model model){

@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  *  实现AuthorizingRealm接口用户用户认证
  */
-public class MyShiroRealm extends AuthorizingRealm {
+public class MyAuthorizingRealm extends AuthorizingRealm {
 
     @Autowired
     private LoginService loginService;
@@ -41,7 +41,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         } else {
             // 这里验证authenticationToken和simpleAuthenticationInfo的信息
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name,
-                    user.getPassword().toString(), getName());
+                    user.getPassWord().toString(), getName());
             return simpleAuthenticationInfo;
         }
     }

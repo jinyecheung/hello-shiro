@@ -31,7 +31,7 @@ public class LoginController {
     @PostMapping(value = "/login")
     public String login(@RequestBody User user) {
         // 添加用户认证信息
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getName(), user.getPassword());
+        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), user.getPassWord());
         // 进行验证，这里可以捕获异常，然后返回对应信息
         SecurityUtils.getSubject().login(usernamePasswordToken);
         return "login ok!";
