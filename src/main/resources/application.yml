@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: hello-shrio
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8
+
+mybatis-plus:
+  tenant-enable: true
+  mapper-locations: classpath:/mapper/*.xml
+  global-config:
+    banner: false
+    db-config:
+      field-strategy: NOT_EMPTY
+  type-handlers-package: com.example.hello.shiro.mapper
+
+logging:
+  level:
+    com.example.hello.shiro.mapper : debug
+
+swagger:
+  enable: true
