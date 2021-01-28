@@ -43,7 +43,8 @@ public class ShiroConfig {
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/v2/**", "anon");
         //
-        filterMap.put("/user/**", "anon");
+        //filterMap.put("/user/**", "anon");
+        //filterMap.put("/index/**", "anon");
         // 对所有用户认证
         filterMap.put("/**", "authc");
         // 登录

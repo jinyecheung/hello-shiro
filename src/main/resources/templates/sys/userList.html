@@ -6,7 +6,37 @@
 </head>
 <body>
     <h4>---------------------</h4>
-    <p th:text="${userList}">Welcome to this page</p>
+    <!--<p th:text="${userList}">Welcome to this page</p>-->
     <h4>---------------------</h4>
+    <p>select site</p>
+    <ol>
+        <li><a href="www.baidu.com" th:href="@{https://www.baidu.com}">baidu</a></li>
+        <li><a href="www.qq.com" th:href="@{https://www.qq.com}">qq</a></li>
+    </ol>
+    <ol>
+        <li><p th:with="isEven=(10 % 2 == 0)"></p></li>
+        <li><p th:with="isEven=${11 % 2 == 0}"></p></li>
+    </ol>
+    <h3>====================================================</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>index</th>
+                <th>id</th>
+                <th>name</th>
+                <th>phone</th>
+                <th>email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user,akStatus : ${userList}">
+                <td th:text="${akStatus.count}"></td>
+                <td th:text="${user.userId}">id</td>
+                <td th:text="${user.userName}">name</td>
+                <td th:text="${user.phone}">phone</td>
+                <td th:text="${user.email}">email</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

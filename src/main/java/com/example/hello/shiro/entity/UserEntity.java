@@ -1,6 +1,7 @@
 package com.example.hello.shiro.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,7 @@ public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("user_id")
+    @TableId("user_id")
     private String userId;
 
     @TableField("user_name")
