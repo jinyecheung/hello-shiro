@@ -3,9 +3,7 @@
 <mapper namespace="com.example.hello.shiro.mapper.UserDaoMapper">
 
     <select id="findByName" resultType="com.example.hello.shiro.entity.User">
-        SELECT *
-          FROM Z_TEST_USER where name = #{name}
-
+        SELECT * FROM t_sys_user where user_name = #{name}
     </select>
 
 </mapper>
