@@ -14,6 +14,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
+
 /**
  *  实现AuthorizingRealm接口用户用户认证
  */
@@ -35,13 +37,16 @@ public class MyAuthorizingRealm extends AuthorizingRealm {
         // 获取用户信息
         String name = authenticationToken.getPrincipal().toString();
         User user = loginService.findByName(name);
+        String ak = user.getUserId();
+        String ab = user.getUserName();
+        String ac = user.getPassWord();
         if (user == null) {
             // 这里返回后会报出对应异常
             return null;
         } else {
             // 这里验证authenticationToken和simpleAuthenticationInfo的信息
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(name,
-                    user.getPassWord().toString(), getName());
+                    user.getPassWord(), getName());
             return simpleAuthenticationInfo;
         }
     }

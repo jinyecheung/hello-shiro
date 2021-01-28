@@ -31,36 +31,35 @@ public class LoginController {
     }
 
     @PostMapping("/login/loginAction")
-    public String loginAction(@RequestBody User user,Model model){
+    public String loginAction(User user){
         // 添加用户认证信息
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), user.getPassWord());
         // 进行验证，这里可以捕获异常，然后返回对应信息
         SecurityUtils.getSubject().login(usernamePasswordToken);
         //
-        return index(model);
-        //return "okokokokok.";
+        //return "redirect:index";
+        return index();
     }
-
-//    @RequestMapping("/error")
-//    public String error(){
-//        return "sys/error";
-//    }
 
     /**
      * http://localhost:8080/index
      * http://localhost:8080/index/home
      */
-    @RequestMapping("/index")
-    public String home(){
+    @RequestMapping("login/index")
+    public String index(){
         return "sys/index";
     }
 
     @RequestMapping("/index/home")
-    public String index(Model model){
+    public String home(Model model){
         model.addAttribute("name","hello-shiro,now is 2021.01.28");
         return "sys/home";
     }
 
+    @RequestMapping("/errorPage")
+    public String errorPage(){
+        return "sys/error";
+    }
     ///////////////////////////////////////////////////////////////////////////
     /**
      * POST登录

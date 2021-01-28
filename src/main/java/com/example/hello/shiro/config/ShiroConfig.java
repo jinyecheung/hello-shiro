@@ -45,6 +45,8 @@ public class ShiroConfig {
         //
         //filterMap.put("/user/**", "anon");
         //filterMap.put("/index/**", "anon");
+        filterMap.put("/login/loginAction","anon");
+        filterMap.put("/errorPage","anon");
         // 对所有用户认证
         filterMap.put("/**", "authc");
         // 登录
@@ -52,7 +54,7 @@ public class ShiroConfig {
         // 首页
         shiroFilterFactoryBean.setSuccessUrl("/index");
         // 错误页面，认证不通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/errorPage");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
         return shiroFilterFactoryBean;
     }
