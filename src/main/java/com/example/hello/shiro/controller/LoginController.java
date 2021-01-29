@@ -147,6 +147,10 @@ public class LoginController {
 //        return "had logout";
 //    }
 
+    /**
+     * 请求demo测试案例
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/demo/test")
     public Object demotest(){
@@ -158,6 +162,13 @@ public class LoginController {
         return map;
     }
 
+    /**
+     * 登录时，认证异常捕获demo案例
+     * @param username
+     * @param password
+     * @param request
+     * @return
+     */
     @RequestMapping("/login/demo")
     public String loginDemo(String username, String password, HttpServletRequest request) {
         try {

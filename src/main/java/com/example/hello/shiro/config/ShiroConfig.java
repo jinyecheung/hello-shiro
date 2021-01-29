@@ -1,5 +1,6 @@
 package com.example.hello.shiro.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -65,5 +66,15 @@ public class ShiroConfig {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+
+    /** html界面支持shiro标签库
+     * <html lang="en" xmlns:th="http://www.thymeleaf.org"
+     *       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect() {
+        return new ShiroDialect();
     }
 }

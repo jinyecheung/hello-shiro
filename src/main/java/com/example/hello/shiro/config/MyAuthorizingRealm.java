@@ -26,6 +26,7 @@ public class MyAuthorizingRealm extends AuthorizingRealm {
 
     /**
      * 用户认证
+     * 被调用 org.apache.shiro.realm.AuthenticatingRealm#getAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken)
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
@@ -53,6 +54,7 @@ public class MyAuthorizingRealm extends AuthorizingRealm {
 
     /**
      * 角色权限和对应权限添加
+     * 被调用 org.apache.shiro.realm.AuthorizingRealm#getAuthorizationInfo(org.apache.shiro.subject.PrincipalCollection)
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
