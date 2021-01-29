@@ -1,13 +1,14 @@
 package com.example.hello.shiro.controller;
 
-import com.example.hello.shiro.entity.User;
+import com.example.hello.shiro.pojo.User;
 import com.example.hello.shiro.service.IUserService;
+import com.example.hello.shiro.util.IDUtil;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.UUID;
 
 /**
  *  http://localhost:8080/user/userList
@@ -26,6 +27,8 @@ public class UserController {
         return "user/userList";
     }
 
+    @RequiresRoles("admin")
+    //@RequiresPermissions("user:add")
     @RequestMapping("add")
     public String add(){
         return "user/addUser";
@@ -33,7 +36,7 @@ public class UserController {
 
     @RequestMapping("addAction")
     public String addAction(User user){
-        user.setUserId(UUID.randomUUID().toString());
+        user.setUserId(IDUtil.getID());
         userService.save(user);
         return "redirect:/user/userList";
     }

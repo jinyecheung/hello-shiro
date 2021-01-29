@@ -1,8 +1,10 @@
 package com.example.hello.shiro.service;
 
 
-import com.example.hello.shiro.entity.Role;
-import com.example.hello.shiro.entity.User;
+import com.example.hello.shiro.pojo.Role;
+import com.example.hello.shiro.pojo.User;
+
+import java.util.List;
 
 public interface LoginService {
     User addUser(User user);
@@ -10,4 +12,7 @@ public interface LoginService {
     Role addRole(Role role);
 
     User findByName(String name);
+
+    List<Role> findUserRoles(User user);
+
 }

@@ -1,5 +1,7 @@
-package com.example.hello.shiro.entity;
+package com.example.hello.shiro.pojovo;
 
+import com.example.hello.shiro.pojo.Permission;
+import com.example.hello.shiro.pojo.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -10,11 +12,12 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Role implements Serializable {
+public class RoleVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private String roleId;
+    private String roleCode;
     private String roleName;
     private User user;
     private List<Permission> permissions;

@@ -1,9 +1,10 @@
 package com.example.hello.shiro.config;
 
-import com.example.hello.shiro.entity.Permission;
-import com.example.hello.shiro.entity.Role;
-import com.example.hello.shiro.apivo.UserVo;
-import com.example.hello.shiro.entity.User;
+import com.example.hello.shiro.pojovo.RoleVo;
+import com.example.hello.shiro.pojo.Permission;
+import com.example.hello.shiro.pojo.Role;
+import com.example.hello.shiro.pojovo.UserVo;
+import com.example.hello.shiro.pojo.User;
 import com.example.hello.shiro.service.LoginService;
 import com.example.hello.shiro.util.BeanConvertUtil;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,6 +16,8 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  *  实现AuthorizingRealm接口用户用户认证
@@ -62,17 +65,21 @@ public class MyAuthorizingRealm extends AuthorizingRealm {
         String name = (String) principalCollection.getPrimaryPrincipal();
         // 查询用户名称
         User user = loginService.findByName(name);
-        // 20210129094812
+        //
         UserVo userVo = BeanConvertUtil.convertBean(user,UserVo.class);
+        //
+        List<Role> userRoles = loginService.findUserRoles(user);
+        //
+        userVo.setRoles(BeanConvertUtil.convertBeanList(userRoles,RoleVo.class));
         // 添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        for (Role role : userVo.getRoles()) {
+        for (RoleVo roleVo : userVo.getRoles()) {
             // 添加角色
-            simpleAuthorizationInfo.addRole(role.getRoleName());
-            for (Permission permission : role.getPermissions()) {
-                // 添加权限
-                simpleAuthorizationInfo.addStringPermission(permission.getPermission());
-            }
+            simpleAuthorizationInfo.addRole(roleVo.getRoleCode());
+//            for (Permission permission : roleVo.getPermissions()) {
+//                // 添加权限
+//                simpleAuthorizationInfo.addStringPermission(permission.getPermission());
+//            }
         }
         return simpleAuthorizationInfo;
     }

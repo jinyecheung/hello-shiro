@@ -1,7 +1,7 @@
 package com.example.hello.shiro.controller;
 
 
-import com.example.hello.shiro.entity.User;
+import com.example.hello.shiro.pojo.User;
 import com.example.hello.shiro.service.LoginService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;

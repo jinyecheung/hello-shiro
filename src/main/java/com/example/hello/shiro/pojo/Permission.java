@@ -1,5 +1,6 @@
-package com.example.hello.shiro.entity;
+package com.example.hello.shiro.pojo;
 
+import com.example.hello.shiro.pojovo.RoleVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -15,6 +16,6 @@ public class Permission implements Serializable {
 
     private Long id;
     private String permission;
-    private Role role;
+    private RoleVo role;
 
 }

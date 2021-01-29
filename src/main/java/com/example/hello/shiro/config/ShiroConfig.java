@@ -5,13 +5,17 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ *
+ * http://shiro.apache.org/java-authentication-guide.html
+ */
 @Configuration
 public class ShiroConfig {
 
@@ -60,12 +64,28 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
-    // 加入注解的使用，不加入这个注解不生效
+    /**
+     * 开启代码权限注解支持,需要两个Bean分别为：
+     * AuthorizationAttributeSourceAdvisor 和 DefaultAdvisorAutoProxyCreator
+     * 注解校验权限角色、权限需要这两个Bean
+     * 加入注解的使用，不加入这个注解不生效
+     * @param securityManager
+     * @return
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+
+    /**
+     * 解决权限注解不生效问题
+     * @return
+     */
+    @Bean
+    public static DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
+        return new DefaultAdvisorAutoProxyCreator();
     }
 
     /** html界面支持shiro标签库

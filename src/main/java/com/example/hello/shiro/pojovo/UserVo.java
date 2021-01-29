@@ -1,6 +1,5 @@
-package com.example.hello.shiro.apivo;
+package com.example.hello.shiro.pojovo;
 
-import com.example.hello.shiro.entity.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,6 +24,6 @@ public class UserVo implements Serializable {
 
     private String email;
 
-    private List<Role> roles;
+    private List<RoleVo> roles;
 
 }

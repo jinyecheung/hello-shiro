@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.hello.shiro.mapper.UserDaoMapper">
 
-    <select id="findByName" resultType="com.example.hello.shiro.entity.User">
+    <select id="findByName" resultType="com.example.hello.shiro.pojo.User">
         SELECT * FROM t_sys_user where user_name = #{name}
     </select>
 
