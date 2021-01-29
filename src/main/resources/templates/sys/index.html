@@ -5,6 +5,20 @@
     <title>index</title>
 </head>
 <body>
-    <p>index ...</p>
+    <p>index page...</p>
+    <ul>
+        <li><a th:href="@{/demo/test}">demo test</a></li>
+    </ul>
+    <ul>
+        <li><a th:href="@{/index/home}">home</a></li>
+        <li><a th:href="@{/user/userList}">userList</a></li>
+        <li><a th:href="@{/user/add}">addUser</a></li>
+    </ul>
+
+    <footer>
+        <ul>
+            <li><a th:href="@{/logout}">logout</a></li>
+        </ul>
+    </footer>
 </body>
 </html>

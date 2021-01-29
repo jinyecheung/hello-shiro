@@ -1,18 +1,17 @@
 package com.example.hello.shiro.controller;
 
 
-import com.example.hello.shiro.entity.Role;
 import com.example.hello.shiro.entity.User;
 import com.example.hello.shiro.service.LoginService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,13 +30,20 @@ public class LoginController {
     }
 
     @PostMapping("/login/loginAction")
-    public String loginAction(User user){
+    public String loginAction(User user,Model model){
         // 添加用户认证信息
-        UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), user.getPassWord());
+        //UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getUserName(), user.getPassWord());
         // 进行验证，这里可以捕获异常，然后返回对应信息
-        SecurityUtils.getSubject().login(usernamePasswordToken);
+        //SecurityUtils.getSubject().login(usernamePasswordToken);
         //
-        //return "redirect:index";
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassWord());
+        try {
+            SecurityUtils.getSubject().login(token);
+        }catch (IncorrectCredentialsException e){
+            token.clear();
+            model.addAttribute("errorMsg","密码错误");
+            return "/sys/error";
+        }
         return index();
     }
 
@@ -45,7 +51,7 @@ public class LoginController {
      * http://localhost:8080/index
      * http://localhost:8080/index/home
      */
-    @RequestMapping("login/index")
+    @RequestMapping("/login/index")
     public String index(){
         return "sys/index";
     }
@@ -56,10 +62,17 @@ public class LoginController {
         return "sys/home";
     }
 
-    @RequestMapping("/errorPage")
+    @RequestMapping("/sys/error")
     public String errorPage(){
         return "sys/error";
     }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        SecurityUtils.getSubject().logout();
+        return "redirect:/login";
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     /**
      * POST登录
@@ -144,4 +157,34 @@ public class LoginController {
         map.put("dk",890981);
         return map;
     }
+
+    @RequestMapping("/login/demo")
+    public String loginDemo(String username, String password, HttpServletRequest request) {
+        try {
+            Subject user = SecurityUtils.getSubject();
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+            try {
+                user.login(token);
+            } catch (LockedAccountException lae) {
+                token.clear();
+                request.setAttribute("error", "用户已经被锁定不能登录，请与管理员联系！");
+                return "/login";
+            } catch (ExcessiveAttemptsException e) {
+                token.clear();
+                request.setAttribute("error", "账号：" + username + " 登录失败次数过多,锁定10分钟!");
+                return "/login";
+            } catch (AuthenticationException e) {
+                token.clear();
+                request.setAttribute("error", "用户或密码不正确！");
+                return "/login";
+            }
+            request.removeAttribute("error");
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "登录异常，请联系管理员！");
+            return "/login";
+        }
+        return "redirect:index.shtml";
+    }
+
 }
