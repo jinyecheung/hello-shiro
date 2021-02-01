@@ -4,9 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>index</title>
-    <script type="javascript" src="/scripts/jquery-3.5.1.js"></script>
-    <script type="javascript">
-
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <!--<script type="text/javascript" th:src="@{/static/js/jquery-3.5.1.js}"></script>-->
+    <script type="text/javascript">
+        function akwwnpd() {
+            console.log("------------9×9乘法表------------");
+            for(var i = 1; i <= 9; i++){
+                var s = '';
+                for(var j = 1; j <= i; j++){
+                    s += (j + "×" + i + "=" + (i*j) + "\t");
+                }
+                console.log(s);
+            }
+        }
     </script>
 </head>
 <body>
@@ -21,7 +31,7 @@
         </shiro:hasRole>
         <li><a th:href="@{/user/add}">addUser</a></li>
     </ul>
-
+    <input type="button" id="p_akwwnpd" value="点击9×9乘法表" onclick="akwwnpd();">
     <footer>
         <ul>
             <li><a th:href="@{/logout}">logout</a></li>
