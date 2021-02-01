@@ -4,9 +4,51 @@
 
     <select id="findUserRoles" parameterType="com.example.hello.shiro.pojo.User"
             resultType="com.example.hello.shiro.pojo.Role">
-        SELECT r.* FROM t_sys_user u,t_sys_user_role ul,t_sys_role r
+        SELECT r.* FROM t_sys_user u,t_sys_user_rel ul,t_sys_role r
         WHERE 1=1 AND u.`user_id` = ul.`user_id` AND ul.`role_id`=r.`role_id`
         AND u.`user_id` = #{userId}
     </select>
 
+    <select id="findUserPermissions" parameterType="com.example.hello.shiro.pojo.User"
+            resultType="com.example.hello.shiro.pojo.Permission">
+        SELECT p.`permission_code` AS 'permissionCode'
+        FROM t_sys_permission p, t_sys_user_rel ul,t_sys_user u
+        WHERE 1=1
+            AND p.`permission_id` = ul.`permission_id`
+            AND ul.`user_id` = u.`user_id`
+            AND u.`user_id` = #{userId}
+        UNION
+        SELECT m.menu_code AS 'permissionCode'
+        FROM t_sys_menu m,t_sys_user_rel u2,t_sys_user u
+        WHERE 1=1
+            AND m.menu_id = u2.menu_id
+            AND u2.user_id = u.user_id
+            AND u.`user_id` = #{userId}
+        UNION
+        SELECT m.`menu_code` AS 'permissionCode'
+        FROM t_sys_user_rel ul,
+            t_sys_user u,
+            t_sys_role_rel rl,
+            t_sys_role r,
+            t_sys_menu m
+        WHERE 1=1
+            AND ul.`user_id` = u.`user_id`
+            AND ul.`role_id` = rl.`role_id`
+            AND rl.`role_id` = r.`role_id`
+            AND rl.`menu_id` = m.`menu_id`
+            AND u.`user_id` = #{userId}
+        UNION
+        SELECT p.`permission_code` AS 'permissionCode'
+        FROM t_sys_user_rel ul,
+            t_sys_user u,
+            t_sys_role_rel rl,
+            t_sys_role r,
+            t_sys_permission p
+        WHERE 1=1
+            AND ul.`user_id` = u.`user_id`
+            AND ul.`role_id` = rl.`role_id`
+            AND rl.`role_id` = r.`role_id`
+            AND rl.`permission_id` = p.`permission_id`
+            AND u.`user_id` = #{userId}
+    </select>
 </mapper>

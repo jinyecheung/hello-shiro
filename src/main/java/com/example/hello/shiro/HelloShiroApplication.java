@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
- * @author zhangjinpei at 2021/02/01
+ * @author zhangjinpei at 2021/01/25 10:20:21
  */
 @SpringBootApplication
 public class HelloShiroApplication extends WebMvcConfigurationSupport {

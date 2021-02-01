@@ -1,8 +1,8 @@
 package com.example.hello.shiro.config;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.example.hello.shiro.pojovo.RoleVo;
 import com.example.hello.shiro.pojo.Permission;
-import com.example.hello.shiro.pojo.Role;
 import com.example.hello.shiro.pojovo.UserVo;
 import com.example.hello.shiro.pojo.User;
 import com.example.hello.shiro.service.LoginService;
@@ -65,21 +65,23 @@ public class MyAuthorizingRealm extends AuthorizingRealm {
         String name = (String) principalCollection.getPrimaryPrincipal();
         // 查询用户名称
         User user = loginService.findByName(name);
-        //
         UserVo userVo = BeanConvertUtil.convertBean(user,UserVo.class);
-        //
-        List<Role> userRoles = loginService.findUserRoles(user);
-        //
-        userVo.setRoles(BeanConvertUtil.convertBeanList(userRoles,RoleVo.class));
+        List<RoleVo> userRoles = loginService.findUserRoles(user);
         // 添加角色和权限
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        for (RoleVo roleVo : userVo.getRoles()) {
-            // 添加角色
-            simpleAuthorizationInfo.addRole(roleVo.getRoleCode());
-//            for (Permission permission : roleVo.getPermissions()) {
-//                // 添加权限
-//                simpleAuthorizationInfo.addStringPermission(permission.getPermission());
-//            }
+        if(CollectionUtils.isNotEmpty(userRoles)){
+            userVo.setRoles(userRoles);
+            for (RoleVo roleVo : userVo.getRoles()) {
+                // 添加角色
+                simpleAuthorizationInfo.addRole(roleVo.getRoleCode());
+                // 添加权限
+                List<Permission> permissionList = roleVo.getPermissions();
+                if(CollectionUtils.isNotEmpty(permissionList)){
+                    for (Permission p : permissionList) {
+                        simpleAuthorizationInfo.addStringPermission(p.getPermissionCode());
+                    }
+                }
+            }
         }
         return simpleAuthorizationInfo;
     }

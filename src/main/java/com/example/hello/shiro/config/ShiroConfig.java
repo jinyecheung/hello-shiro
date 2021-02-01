@@ -52,8 +52,8 @@ public class ShiroConfig {
         //filterMap.put("/index/**", "anon");
         filterMap.put("/login/loginAction","anon");
         //filterMap.put("/errorPage","anon");
-        //静态文件，如js，图片
-        filterMap.put("/static/**","anon");
+        //静态文件，如js、图片（此代码好像可以省略）
+        //filterMap.put("/static/**","anon");
         // 对所有用户认证
         filterMap.put("/**", "authc");
         // 登录
