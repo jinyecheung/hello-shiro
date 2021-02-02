@@ -29,8 +29,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="user,akStatus : ${userList}">
-                <td th:text="${akStatus.count}"></td>
+            <tr th:each="user,akStat : ${userList}">
+                <td th:text="${akStat.count}"></td>
                 <td th:text="${user.userId}">id</td>
                 <td th:text="${user.userName}">name</td>
                 <td th:text="${user.phone}">phone</td>

@@ -34,6 +34,11 @@
     <shiro:hasPermission name="user:add">
         <input type="button" id="p_akwwnpd" value="点击9×9乘法表" onclick="akwwnpd();">
     </shiro:hasPermission>
+
+    <ul>
+        <li><a th:href="@{/permission/list}">permissionList</a></li>
+    </ul>
+
     <footer>
         <ul>
             <li><a th:href="@{/logout}">logout</a></li>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" th:action="@{/permission/save}">
+        <ul>
+            <li>权限编码：<input type="text" name="permissionCode"></li>
+            <li>权限名称：<input type="text" name="permissionName"></li>
+            <li>权限类型：<input type="text" name="permissionType"></li>
+            <li>权限状态：<input type="text" name="deleteFlag"></li>
+            <li><input type="submit" value="确定"></li>
+        </ul>
+    </form>
+</body>
+</html>
