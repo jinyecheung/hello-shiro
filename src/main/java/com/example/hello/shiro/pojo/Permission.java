@@ -1,6 +1,7 @@
 package com.example.hello.shiro.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,7 @@ public class Permission implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("permission_id")
+    @TableId("permission_id")
     private String permissionId;
 
     @TableField("permission_code")
