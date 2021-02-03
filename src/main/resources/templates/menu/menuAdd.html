@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>menuAdd</title>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript"></script>
+</head>
+<body>
+    <form method="post" th:action="@{/menu/save}">
+        <ul>
+            <li>菜单编码：<input type="text" name="menuCode"></li>
+            <li>菜单名称：<input type="text" name="menuName"></li>
+            <li>上级菜单：<input type="text" name="parentMenuId"></li>
+            <li>菜单类型：<input type="text" name="menuType"></li>
+            <li>菜单URL：<input type="text" name="menuUrl"></li>
+            <li>是否显示：<input type="text" name="showFlag"></li>
+            <li>菜单状态：<input type="text" name="deleteFlag"></li>
+            <li><input type="submit" value="确定"></li>
+        </ul>
+    </form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>addmenu</title>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript"></script>
+</head>
+<body>
+    <a th:href="@{/menu/menuAdd}">menuAdd</a>
+    <table>
+        <thead>
+            <tr>
+                <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
+                <th>6</th> <th>7</th> <th>8</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${menuList}">
+                <td th:text="${p.menuId}">1</td>
+                <td th:text="${p.menuCode}">2</td>
+                <td th:text="${p.menuName}">3</td>
+                <td th:text="${p.parentMenuId}">4</td>
+                <td th:text="${p.menuType}">5</td>
+                <td th:text="${p.menuUrl}">6</td>
+                <td th:text="${p.showFlag}">7</td>
+                <td th:text="${p.deleteFlag}">8</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

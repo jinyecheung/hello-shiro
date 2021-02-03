@@ -61,7 +61,7 @@ public class CodeGenerator {
      */
     public static void inputMethod2() {
         List<Map<String, String>> maps = new ArrayList<>();
-        maps.add(inputParams("shift", "SHIFTS_ITEM_PERSON", "人员班次表"));
+        maps.add(inputParams("menu", "t_sys_menu", "菜单表"));
        // maps.add(inputParams("field", "PERSONNEL_FIELD_VALUE", "人员扩展字段值表"));
 
         for (Map<String, String> one : maps) {
