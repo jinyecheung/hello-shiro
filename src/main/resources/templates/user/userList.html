@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>user list</title>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript"></script>
 </head>
 <body>
-
-    <table>
+    <a th:href="@{/user/add}">addUser</a>
+    <table class="table table-striped table-bordered table-condensed table-hover">
         <thead>
             <tr>
                 <th>index</th>

@@ -8,6 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 /**
  * @author zhangjinpei at 2021/01/25 10:20:21
+ * bootstrap tutorial: https://www.runoob.com/bootstrap/bootstrap-tables.html
+ * Twitter quick start: https://getbootstrap.com/
+ * Bootstrat 可视化布局 : https://www.runoob.com/try/bootstrap/layoutit/
  */
 @SpringBootApplication
 public class HelloShiroApplication extends WebMvcConfigurationSupport {
