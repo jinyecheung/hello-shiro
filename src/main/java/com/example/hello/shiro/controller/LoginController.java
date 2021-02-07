@@ -54,7 +54,9 @@ public class LoginController {
     @RequestMapping("/login/index")
     public String index(){
         return "sys/index";
+        //return "akoa/index";
     }
+
 
     @RequestMapping("/index/home")
     public String home(Model model){

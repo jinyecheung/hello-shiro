@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <!--<script type="text/javascript" th:src="@{/static/js/jquery-3.5.1.js}"></script>-->
+    <script type="text/javascript">
+        function akwwnpd() {
+            console.log("------------9×9乘法表------------");
+            for(var i = 1; i <= 9; i++){
+                var s = '';
+                for(var j = 1; j <= i; j++){
+                    s += (j + "×" + i + "=" + (i*j) + "\t");
+                }
+                console.log(s);
+            }
+        }
+    </script>
+</head>
+<body>
+<p id="akakaka">index page...</p>
+<ul>
+    <li><a th:href="@{/demo/test}">demo test</a></li>
+</ul>
+<ul>
+    <li><a th:href="@{/index/home}">home</a></li>
+    <shiro:hasRole name="admin">
+        <li><a th:href="@{/user/userList}">userList</a></li>
+    </shiro:hasRole>
+    <li><a th:href="@{/user/add}">addUser</a></li>
+</ul>
+<shiro:hasPermission name="user:add">
+    <input type="button" id="p_akwwnpd" value="点击9×9乘法表" onclick="akwwnpd();">
+</shiro:hasPermission>
+
+<ul>
+    <li><a th:href="@{/permission/list}">permissionList</a></li>
+</ul>
+<ul>
+    <li><a th:href="@{/menu/list}">menuList</a></li>
+</ul>
+
+<footer>
+    <ul>
+        <li><a th:href="@{/logout}">logout</a></li>
+    </ul>
+</footer>
+</body>
+</html>

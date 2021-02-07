@@ -61,7 +61,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     @Override
     public List<Menu> findMenuParentList() {
         LambdaQueryWrapper<Menu> wrapper = new LambdaQueryWrapper<>();
-        wrapper.isNull(Menu::getParentMenuId);
+        wrapper.isNull(Menu::getParentMenuId).or().eq(Menu::getParentMenuId,"");
         return this.list(wrapper);
     }
 }

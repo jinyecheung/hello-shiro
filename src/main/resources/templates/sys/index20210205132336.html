@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/layoutit.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript"></script>
+</head>
+<body class="edit">
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-layoutit">
+        <div class="navbar-header">
+            <button data-target="navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="glyphicon-bar"></span>
+                <span class="glyphicon-bar"></span>
+                <span class="glyphicon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="v3/favicon.png" />
+                菜鸟工具
+                <span class="label label-default">BETA</span>
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav" id="menu-layoutit">
+                <li>
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        <button type="button" id="edit" class="active btn btn-xs btn-primary"> <i class="glyphicon glyphicon-edit "></i>
+                            编辑
+                        </button>
+                        <button type="button" class="btn btn-xs btn-primary" id="devpreview">
+                            <i class="glyphicon-eye-close glyphicon"></i>
+                            开发
+                        </button>
+                        <button type="button" class="btn btn-xs btn-primary" id="sourcepreview">
+                            <i class="glyphicon-eye-open glyphicon"></i>
+                            预览
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-primary" id="button-download-modal" data-target="#downloadModal" role="button" data-toggle="modal"> <i class="glyphicon-chevron-down glyphicon"></i>
+                            下载
+                        </button>
+                        <!--  <button class="btn btn-xs btn-primary" id="button-share-modal" href="/share/indexV3" role="button" data-toggle="modal" data-target="#shareModal"> <i class="glyphicon-share glyphicon"></i>
+                        分享
+                    </button>
+                    -->
+                        <button class="btn btn-xs btn-primary" href="#clear" id="clear" >
+                            <i class="glyphicon-trash glyphicon"></i>
+                            清空
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <a target="_blank" href="/try/bootstrap/layoutit/index_old.html">
+                            <button type="button" class="btn btn-xs btn-primary">
+                                前往旧版
+                                <i class="glyphicon-chevron-right glyphicon"></i>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="btn-group">
+                        <a target="_blank" href="/bootstrap/bootstrap-tutorial.html">
+                            <button type="button" class="btn btn-xs btn-primary">
+                                Bootstrap 教程
+                                <i class="glyphicon-chevron-right glyphicon"></i>
+                            </button>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    <!--/.navbar-collapse -->
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <div class="sidebar-nav">
+                    <ul class="nav nav-list accordion-group">
+                        <li class="nav-header">
+                            <i class="glyphicon glyphicon-plus"></i>用户管理
+                        </li>
+                        <li class="boxes" id="elmBase">
+                            <div class="box box-element">
+                                <div class="preview">查询</div>
+                            </div>
+                            <div class="box box-element">
+                                <div class="preview">新增</div>
+                            </div>
+                            <div class="box box-element">
+                                <div class="preview">修改</div>
+                            </div>
+                            <div class="box box-element">
+                                <div class="preview">删除</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
