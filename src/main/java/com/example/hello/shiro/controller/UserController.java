@@ -3,7 +3,6 @@ package com.example.hello.shiro.controller;
 import com.example.hello.shiro.pojo.User;
 import com.example.hello.shiro.service.IUserService;
 import com.example.hello.shiro.util.IDUtil;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
