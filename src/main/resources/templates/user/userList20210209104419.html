@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>user list</title>
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/pagination.js"></script>
+    <script type="text/javascript" src="/static/js/pagination-demo.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="/static/css/pagination.css">-->
+    <script type="text/javascript">
+        $(document).ready(init(26));
+    </script>
+</head>
+<body>
+    <a th:href="@{/user/add}">addUser</a>
+    <div id="divId_pageList">
+        <table class="table table-striped table-bordered table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>index</th>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>phone</th>
+                    <th>email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user,akStat : ${pageData.records}">
+                    <td th:text="${akStat.count}"></td>
+                    <td th:text="${user.userId}">id</td>
+                    <td th:text="${user.userName}">name</td>
+                    <td th:text="${user.phone}">phone</td>
+                    <td th:text="${user.email}">email</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button type="button" id="S20210208171" th:onclick="">首页</button>
+        <button type="button" id="E20210208171" th:onclick="">尾页</button>
+    </div>
+    <div id="Pagination"></div>
+</body>
+</html>

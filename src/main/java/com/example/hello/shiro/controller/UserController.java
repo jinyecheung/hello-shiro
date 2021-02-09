@@ -29,12 +29,18 @@ public class UserController {
         return "user/userList";
     }
 
+    @RequestMapping("userListTable")
+    public Object userListTable(UserVo userVo , Model model){
+        model.addAttribute("pageData",userService.FindUserListPage(userVo));
+        return "user/userListTable";
+    }
     // for test
     @RequestMapping("userListPage")
     @ResponseBody
     public Object userListPage(UserVo userVo , Model model){
-        model.addAttribute("pageData",userService.FindUserListPage(userVo));
-        return "user/userListPage";
+        //model.addAttribute("pageData",userService.FindUserListPage(userVo));
+        //return "user/userListPage";
+        return userService.FindUserListPage(userVo);
     }
 
     @RequiresRoles("admin")

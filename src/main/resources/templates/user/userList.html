@@ -5,17 +5,72 @@
     <title>user list</title>
     <script type="text/javascript" src="/static/js/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/static/js/pagination.js"></script>
-    <script type="text/javascript" src="/static/js/pagination-demo.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="/static/css/pagination.css">-->
     <script type="text/javascript">
-        $(document).ready(init(26));
+        //$(document).ready(  );
+        function invokeAjaxToShowData(params) {
+            var v_url = '/user/userListTable';
+            $.ajax({
+                type: "post",
+                url: v_url,
+                data: params,
+                dataType: 'html',
+                success: function (resultData) {
+                    $("#pageListTable").empty();
+                    $("#pageListTable").html(resultData);
+                }
+            });
+        }
+
+        function updatePageData(currPage,pageSize){
+            var params = {};
+            if(currPage && currPage > 0){
+                params.currPage = currPage;
+            }
+            if(pageSize && pageSize > 0){
+                params.pageSize = pageSize;
+            }
+            invokeAjaxToShowData(params);
+        }
+
+        function queryDataBy() {
+            var userName = $("#userName").val();
+            var phone = $("#phone").val();
+            var params = {};
+            params.userName = userName;
+            params.phone = phone;
+            $("#pageFooterId").hide();
+            invokeAjaxToShowData(params);
+        }
     </script>
 </head>
 <body>
-    <a th:href="@{/user/add}">addUser</a>
-    <div id="divId_pageList">
+    <!--<a th:href="@{/user/add}">addUser</a>-->
+    <fieldset>
+        <legend>查询条件</legend>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="form-group">
+                    <label for="userName" class="col-sm-2 control-label">userName</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="userName" name="userName" value=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-2 control-label">phone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="phone" name="phone" value=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-default" th:onclick="'javascript:queryDataBy()'">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div id="pageListTable">
         <table class="table table-striped table-bordered table-condensed table-hover">
             <thead>
                 <tr>
@@ -37,10 +92,12 @@
             </tbody>
         </table>
     </div>
-    <div>
-        <button type="button" id="S20210208171" th:onclick="">首页</button>
-        <button type="button" id="E20210208171" th:onclick="">尾页</button>
+    <div id="pageFooterId">
+        <button type="button" th:onclick="updatePageData(1)">首页</button>
+        <button type="button" th:each="i : ${#numbers.sequence(1,pageData.pages)}" th:onclick="'javascript:updatePageData('+${i}+')'">
+            <span th:text="${i}">1</span>
+        </button>
+        <button type="button" th:onclick="'javascript:updatePageData('+${pageData.pages}+')'">尾页</button>
     </div>
-    <div id="Pagination"></div>
 </body>
 </html>
